@@ -48,5 +48,16 @@ document.getElementById("form-user-create").addEventListener("submit", (event) =
         }
     });
 
-    addLine(user);
+    var objectUser = new User(
+        user.name,
+        user.gender,
+        user.birth,
+        user.country,
+        user.email,
+        user.password,
+        user.photo,
+        user.admin
+    );
+
+    addLine(objectUser);
 })
