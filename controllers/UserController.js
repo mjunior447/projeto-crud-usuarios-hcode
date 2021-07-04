@@ -66,14 +66,6 @@ class UserController {
     getValues() {
         let user = {};
             [...this.formEl.elements].forEach((field) => {
-            // if (field.name == "gender") {
-            //     if (field.checked) {
-            //         user[field.name] = field.value;
-            //     }
-            // } else {
-            //     user[field.name] = field.value;
-            // }
-
             if (field.name == "gender") {
                 if (field.checked) {
                     user[field.name] = field.value;
