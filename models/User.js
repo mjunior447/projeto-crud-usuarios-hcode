@@ -45,7 +45,7 @@ class User {
     }
 
     get admin() {
-        return this._name;
+        return this._admin;
     }
 
     get register() {

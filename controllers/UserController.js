@@ -54,6 +54,8 @@ class UserController {
                 reject(e);
             }
 
+            // se o usuário não selecionar uma imagem,
+            // insira uma imagem padrão
             if (file) {
                 fileReader.readAsDataURL(file);
             } else {
@@ -72,7 +74,7 @@ class UserController {
         [...this.formEl.elements].forEach((field) => {
 
             // validação de formulário
-            // os 3 campos no array sao obrigatorios
+            // os 3 campos no array a seguir sao obrigatorios
             if (['name', 'email', 'password'].indexOf(field.name) > -1 && !field.value) {
 
                 field.parentElement.classList.add('has-error');
@@ -112,6 +114,8 @@ class UserController {
 
         let tr = document.createElement("tr");
 
+        tr.dataset.user = JSON.stringify(userData);
+
         tr.innerHTML = `
         <tr>
             <td><img src="${userData.photo}" alt="User Image" class="img-circle img-sm"></td>
@@ -133,7 +137,20 @@ class UserController {
 
     updateCount() {
 
-        console.dir(this.tableEl);
+        let numberUsers = 0;
+        let numberAdmins = 0;
+
+        [...this.tableEl.children].forEach(tr => {
+
+            numberUsers++;
+            
+            let user = JSON.parse(tr.dataset.user);
+            if (user._admin) numberAdmins++;
+
+        });
+
+        document.querySelector("#number-users").innerHTML = numberUsers;
+        document.querySelector("#number-users-admin").innerHTML = numberAdmins;
 
     }
 
